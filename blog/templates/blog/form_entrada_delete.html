@@ -1,0 +1,29 @@
+
+{% extends 'blog/base.html' %}
+
+{% block title %}Borrar entrada{% endblock %}
+
+{% block content %}
+{% load static %}
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-8 mx-auto">
+                <div class="card shadow-sm">
+                    <div class="card-header font-weight-bold">
+                        Borrar entrada
+                    </div>
+                    <div class="card-body">
+                        ¿Estás seguro que deseas borrar tu entrada?
+                        <form method="POST" > 
+                            {% csrf_token %}  <!-- CSRF Token added here -->
+                            {{ form.as_p }}
+                            <button type="buscar" class="btn btn-danger">Borrar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

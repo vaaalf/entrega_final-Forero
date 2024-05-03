@@ -1,0 +1,43 @@
+
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block title %} Tu perfil {% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <div class="row centered-button">
+            <div class="col">
+                <h1>Tu perfil</h1>
+              </div>
+          </div>
+        <div class="container">
+            <div class="row">
+              <div class="col-lg-12 col-md-12 col-12">
+                <div class="card custom-card">
+                  {% if user.perfil.imagen %}
+                  <img src="{{perfil.imagen.url}}" class="card-img-top dynamic-image" alt="...">
+                  {% else %}
+                  <img src="{% static 'blog/images/profile.png' %}" class="card-img-top dynamic-image" style="max-width: 800px; max-height: 800px;" alt="...">
+                  {% endif %}
+                  <div class="card-body">
+                    <p class="small-paragraph">{{perfil.user.email}} | {{perfil.user.username}}</p>
+                    <hr>
+                    {% if perfil.nombre %}
+                    <h3 class="card-title">{{perfil.nombre}}</h3>
+                    <p class="card-text">{{perfil.descripcion}}</p>
+                    <a href="{{perfil.link}}" class="btn btn-link">Tu red social</a>
+                    {% else %}
+                    <h3 class="card-title">COMPLETA TU PERFIL</h3>
+                    {% endif %}
+
+                    <a href="{% url 'profile-update' %}" class="btn btn-light">Editar</a>
+                    <a href="{% url 'password_change' %}" class="btn btn-info">Cambiar contraseña</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> 
+    </div>
+</section>
+{% endblock %}

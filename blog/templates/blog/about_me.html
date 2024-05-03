@@ -1,0 +1,33 @@
+{% extends 'blog/base.html' %}
+
+{% block title %} Acerca de mi {% endblock title %}
+
+{% block content %}
+{% load static %}
+<section class="py-5">
+    <div class="container">
+        <div class="row centered-button">
+            <div class="col">
+                <h1>About me</h1>
+              </div>
+          </div>
+        <div class="container">
+            <div class="row">
+              <div class="col-lg-12 col-md-12 col-12">
+                <div class="card custom-card">
+                  
+                  <div class="card-body centered-button">
+                    <img src="{% static 'blog/images/valfo.jpg' %}" class="card-img-top dynamic-image" style="max-width: 300px; max-height: 300px;" alt="...">
+                    <p class="small-paragraph">Valentina Forero</p>
+                    <hr>
+                    <p class="card-text">Hola curios@, me llamo Valentina Forero, comunicadora social de profesión y mamá por elección.</p>
+                    <p class="card-text">Actualmente soy Revenue Specialist de una empresa de tecnología, desde hace unos años gracias a mi trabajo tuve acercamiento al código, más exactamente a SQL y Python, luego de esto me interesó aprender más. </p>
+                    <p class="card-text">Quise hacer mi proyecto basado en un blog para que cualquier persona pueda plasmar sus pensamientos sin miedo a ser juzgado. Sin más, gracias por visitar mi página y espero puedas dejar una entrada hablando de ti o de lo que más te guste.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> 
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,31 @@
+
+{% extends 'blog/base.html' %}
+
+{% block title %}Inicia sesión{% endblock %}
+
+{% block content %}
+{% load static %}
+<section class="py-5">
+    <div class="container">
+        <h2 class="mb-8">Inicia sesión</h2>
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <div class="card shadow-sm">
+                    <div class="card-header font-weight-bold">
+                        Inicia sesión
+                    </div>
+                    <div class="card-body">
+                        <form method="POST"> 
+                            {% csrf_token %}  <!-- CSRF Token added here -->
+                            {{ form.as_p }}
+                            <button type="buscar" class="btn btn-info">Iniciar sesión</button>
+                        </form>
+                        <hr>
+                        <a href="{% url 'signup' %}" class="btn btn-secondary">Signup</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

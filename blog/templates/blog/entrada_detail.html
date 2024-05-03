@@ -1,0 +1,111 @@
+
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block title %} Entradas {% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <div class="row centered-button">
+            <div class="col">
+                <h1>Entrada: {{entrada.titulo}}</h1>
+              </div>
+          </div>
+        <div class="container">
+            <div class="row">
+              <div class="col-lg-12 col-md-12 col-12">
+                <div class="card custom-card">
+                  <img src="{{entrada.imagen.url}}" class="card-img-top dynamic-image" alt="...">
+                  <div class="card-body">
+                    <p class="small-paragraph">
+                      {% if entrada.autor.perfil.nombre %}
+                      {{entrada.autor.perfil.nombre}}
+                      {% else %}
+                      {{entrada.autor.username}}
+                      {% endif %} | {{entrada.fecha_creacion}}</p>
+                    <hr>
+                    <h3 class="card-title">{{entrada.subtitulo}}</h3>
+                    <p class="card-text">{{entrada.contenido}}</p>
+                    
+                    {% if user == entrada.autor %}
+                    <a href="{% url 'entrada-update' entrada.pk %}" class="btn btn-light">Editar</a>
+                    <a href="{% url 'entrada-delete' entrada.pk %}" class="btn btn-danger">Borrar</a>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+          </div> 
+          <div class="container p-4 m-4">
+            {% if user.is_authenticated %}
+            <div class="card p-2">
+              <div class="card-header">
+                <div class="row">
+                  <div class="col-auto">
+                    {% if user.perfil.imagen %}
+                    <img src="{{user.perfil.imagen.url}}" class="card-img-top img-thumbnail" style="max-width: 40px; max-height: 40px;" alt="...">
+                    {% else %}
+                    <img src="{% static 'blog/images/profile.png' %}" class="card-img-top img-thumbnail" style="max-width: 40px; max-height: 40px;" alt="...">
+                    {% endif %}
+                  </div>
+                  <div class="col">
+                    Deja tu comentario
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <form method="POST" action="{% url 'comentario-create' %}"> 
+                  {% csrf_token %}  <!-- CSRF Token added here -->
+                  {{ form_comentario.as_p }}
+                  <button type="buscar" class="btn btn-info">Comentar</button>
+              </form>
+              </div>
+            </div>
+            {% else %}
+            <div class="card p-2">
+              <div class="card-header">
+                <div class="row">
+                    <div class="col">
+                      Deja tu comentario
+                    </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <p class="card-text">Para dejar un comentario inicia sesión</p>
+                <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+              </div>
+            </div>
+            {% endif %}
+
+            {% for comentario in comentarios %}
+            <div class="card p-2">
+              <div class="card-header">
+                <div class="row">
+                    <div class="col-auto">
+                      {% if comentario.usuario.perfil.imagen %}
+                      <img src="{{comentario.usuario.perfil.imagen.url}}" class="card-img-top img-thumbnail" style="max-width: 40px; max-height: 40px;" alt="...">
+                      {% else %}
+                      <img src="{% static 'blog/images/profile.png' %}" class="card-img-top img-thumbnail" style="max-width: 40px; max-height: 40px;" alt="...">
+                      {% endif %}
+                    </div>
+                    <div class="col">
+                      {% if comentario.usuario.perfil.nombre %}
+                      {{comentario.usuario.perfil.nombre}}
+                      {% else %}
+                      {{comentario.usuario.username}}
+                      {% endif %}
+                    </div>
+                </div>
+                <p class="small-paragraph">{{comentario.fecha_creacion}}</p>
+              </div>
+              <div class="card-body">
+                <p class="card-text">{{comentario.mensaje}}</p>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+
+    </div>
+</section>
+{% endblock %}

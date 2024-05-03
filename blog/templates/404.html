@@ -1,0 +1,25 @@
+
+{% extends 'blog/base.html' %}
+
+{% block title %}Editar perfil{% endblock %}
+
+{% block content %}
+{% load static %}
+<section class="py-5">
+    <div class="container">
+        <h2 class="mb-8">Este link no existe</h2>
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <div class="card shadow-sm">
+                    <div class="card-header font-weight-bold">
+                        404 error, no existen pensamientos o ideas en este link
+                    </div>
+                    <div class="card-body">
+                        <a href="{% url 'entrada-list' %}" class="btn btn-light">Ir a entradas</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

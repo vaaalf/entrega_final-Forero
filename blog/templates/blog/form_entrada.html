@@ -1,0 +1,33 @@
+
+{% extends 'blog/base.html' %}
+
+{% block title %}Crear entrada{% endblock %}
+
+{% block content %}
+{% load static %}
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-8 mx-auto">
+                <div class="card shadow-sm">
+                    <div class="card-header font-weight-bold">
+                        Comparte tus pensamientos
+                    </div>
+                    <div class="card-body">
+                        <form method="POST" enctype="multipart/form-data"> 
+                            {% csrf_token %}  <!-- CSRF Token added here -->
+                            {{ form.media }}
+                            {{ form.as_p }}
+                            {% if is_update_view %}
+                            <button type="buscar" class="btn btn-info">Editar</button>
+                            {% else %}
+                            <button type="buscar" class="btn btn-info">Crear</button>
+                            {% endif %}
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

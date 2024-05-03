@@ -1,0 +1,67 @@
+{% extends 'blog/base.html' %}
+
+{% block title %} Entradas {% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <div class="row centered-button">
+          <div class="col">
+            <form method="GET"> 
+              {% csrf_token %}  <!-- CSRF Token added here -->
+              {{ form_busqueda.as_p }}
+              <button type="buscar" class="btn btn-info">Buscar</button>
+          </form>
+          </div>
+            <div class="col">
+                <a href="{% url 'entrada-create' %}" class="btn btn-dark">Crear entrada</a>
+                {% if is_my_view %}
+                <a href="{% url 'entrada-list' %}" class="btn btn-warning">Entradas</a>
+                {% else %}
+                {% if user.is_authenticated %}
+                <a href="{% url 'entrada-list-mine' %}" class="btn btn-warning">Mis entradas</a>
+                {% endif %}
+                {% endif %}
+              </div>
+          </div>
+        <div class="container">
+            <div class="row center-content">
+            {% for entrada in object_list %}
+              <div class="col-lg-4 col-md-6 col-12">
+                <div class="card custom-card">
+                  <img src="{{entrada.imagen.url}}" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h3 class="card-title">{{entrada.titulo}}</h3>                    
+                    <p class="card-text">{{entrada.subtitulo}}</p>
+                    <hr>
+                    <p class="small-paragraph">
+                      {% if entrada.autor.perfil.nombre %}
+                      {{entrada.autor.perfil.nombre}}
+                      {% else %}
+                      {{entrada.autor.username}}
+                      {% endif %} | {{entrada.fecha_creacion}}</p>
+                    <a href="{% url 'entrada-detail' entrada.pk %}" class="btn btn-primary">Leer</a>
+                    {% if is_my_view %}
+                    <a href="{% url 'entrada-update' entrada.pk %}" class="btn btn-light">Editar</a>
+                    <a href="{% url 'entrada-delete' entrada.pk %}" class="btn btn-danger">Borrar</a>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            {% empty %}
+            <div class="col-lg-4 col-md-6 col-12">
+                <div class="card custom-card">
+                  <div class="card-body">
+                    <h5 class="card-title">No hay entradas</h5>
+                    <p class="card-text">Comparte tus pensamientos</p>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+            </div>
+          </div>
+          
+          
+    </div>
+</section>
+{% endblock %}

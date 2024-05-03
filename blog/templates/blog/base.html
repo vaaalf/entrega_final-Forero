@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} Wonderland {% endblock title %}</title>
+    <!-- Bootstrap CSS CDN (Bootstrap 4 used as an example) -->
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="{% static 'blog/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/css/blog_style.css' %}">
+</head>
+<body>
+    <!-- Navbar -->
+    <header class="header">
+        <div class="container-header">
+          <div class="header__logo">
+            <a href="{% url 'entrada-list' %}"><h1 class="header__logo__name">Wonderland Blog</h1></a>
+        </div>
+        <nav class="header__nav">
+          <ul class="header__menu">
+            <li class="header__item"><a href="{% url 'entrada-list' %}" class="header__link">Entradas</a></li>
+            {% if user.is_authenticated %}
+            <li class="header__item"><a href="{% url 'profile-detail' %}" class="header__link">Perfil</a></li>
+            <li class="header__item"><a href="{% url 'logout' %}" class="header__link">Logout</a></li>
+            {% else %}
+            <li class="header__item"><a href="{% url 'login' %}" class="header__link">Login</a></li> 
+            <li class="header__item"><a href="{% url 'signup' %}" class="header__link">Sign up</a></li>    
+            {% endif %}
+            <li class="header__item"><a href="{% url 'about_me' %}" class="header__link">About me</a></li>
+          </ul>
+        </nav>
+        </div>
+      </header>
+    <!-- Main content -->
+    <div class="container mt-4">
+        {% block content %}
+        <!-- Content goes here -->
+        {% endblock content %}
+    </div>
+    <!-- Bootstrap JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

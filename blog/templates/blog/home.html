@@ -1,0 +1,11 @@
+{% extends 'blog/base.html' %}
+
+{% block title %} Wonderland blog {% endblock title %}
+
+{% block content %}
+{% load static %}
+<section>
+    <h2 style="text-align: center;">Bienvenido a Wonderland Blog!</h2>
+    <img src="{% static 'blog/images/customer_portal_home.jpg' %}" alt="Wonderland" class="center">
+</section>
+{% endblock %}
