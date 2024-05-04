@@ -1,10 +1,10 @@
 # Wonderland Blog
-La aplicación se llama Wonderland Blog, consta de 3 modelos llamados: `Perfil`, `Entrada`, `Comentario` y `Usuario`.
+La aplicación se llama Wonderland Blog, consta de 4 modelos llamados: `Perfil`, `Entrada`, `Comentario` y `Usuario`.
 En esta aplicación puedes crear entradas de blog, personalizar tu perfil y dejar comentarios para interactuar con otros usuarios.
 
 ## ¿Cómo probar?
 - Para empezar debes registrarte y luego iniciar sesión.
-- Luego deberías completar tu perfil, pero no te preocupes, puedes interactuar con la plataforma sin hacer este paso.
+- Luego deberás completar tu perfil, pero no te preocupes, puedes interactuar con la plataforma sin hacer este paso.
 - Puedes crear una entrada compartiendo tus pensamientos, editarla y borrarla. 
 - También puedes buscar sobre los nombres de todas las entradas.
 - Puedes dejar un comentario en cualquier entrada.
@@ -16,3 +16,6 @@ El código está ubicado en dos aplicaciones de Django `blog` usando los archivo
 También podrás encontrar la aplicación `accounts` usando los archivos `models.py`, `forms.py`, `views.py` y `urls.py`. Donde se encuentra lo relacionado a los usuarios y perfiles: registro, login, cambio de contraseña y edición de perfiles. 
 
 Podrás ver que las vistas estan construidas usando `django.views.generic`, una de las muchas facilidades de Django.
+
+## Video explicación
+Te comparto [un video](https://www.loom.com/share/99ac5f322c7348af9d744480ecedb258?sid=04b17fb4-59f8-49ae-9d5e-53cc9906b7e8) con la explicación de la app
